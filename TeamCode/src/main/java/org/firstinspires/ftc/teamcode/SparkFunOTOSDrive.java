@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner;
+package org.firstinspires.ftc.teamcode;
 
 
 
@@ -15,7 +15,11 @@ import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/SparkFunOTOSDrive.java
 import org.firstinspires.ftc.teamcode.RoadRunner.message.PoseMessage;
+=======
+import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+>>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/SparkFunOTOSDrive.java
 
 /**
  * Experimental extension of MecanumDrive that uses the SparkFun OTOS sensor for localization.

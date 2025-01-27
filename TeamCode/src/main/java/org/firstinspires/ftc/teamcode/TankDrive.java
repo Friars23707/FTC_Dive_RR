@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.RoadRunner;
+package org.firstinspires.ftc.teamcode;
 
 import androidx.annotation.NonNull;
 
@@ -43,15 +43,23 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
+<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/TankDrive.java
 import org.firstinspires.ftc.teamcode.Drawing;
 import org.firstinspires.ftc.teamcode.Localizer;
 import org.firstinspires.ftc.teamcode.RoadRunner.message.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.RoadRunner.message.PoseMessage;
 import org.firstinspires.ftc.teamcode.RoadRunner.message.TankCommandMessage;
 import org.firstinspires.ftc.teamcode.RoadRunner.message.TankLocalizerInputsMessage;
+=======
+import org.firstinspires.ftc.teamcode.messages.DriveCommandMessage;
+import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+import org.firstinspires.ftc.teamcode.messages.TankCommandMessage;
+import org.firstinspires.ftc.teamcode.messages.TankLocalizerInputsMessage;
+>>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TankDrive.java
 
 import java.util.ArrayList;
 import java.util.Arrays;
