@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-<<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/message/MecanumLocalizerInputsMessage.java
-package org.firstinspires.ftc.teamcode.RoadRunner.message;
-========
 package org.firstinspires.ftc.teamcode.messages;
->>>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/messages/MecanumLocalizerInputsMessage.java
-=======
-package org.firstinspires.ftc.teamcode.messages;
->>>>>>> parent of 39c5237 (set up basic files)
 
 import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 

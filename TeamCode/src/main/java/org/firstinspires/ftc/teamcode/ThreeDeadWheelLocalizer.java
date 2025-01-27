@@ -15,16 +15,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-<<<<<<< HEAD
-<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/ThreeDeadWheelLocalizer.java
-import org.firstinspires.ftc.teamcode.Localizer;
-import org.firstinspires.ftc.teamcode.RoadRunner.message.ThreeDeadWheelInputsMessage;
-=======
 import org.firstinspires.ftc.teamcode.messages.ThreeDeadWheelInputsMessage;
->>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/ThreeDeadWheelLocalizer.java
-=======
-import org.firstinspires.ftc.teamcode.messages.ThreeDeadWheelInputsMessage;
->>>>>>> parent of 39c5237 (set up basic files)
 
 @Config
 public final class ThreeDeadWheelLocalizer implements Localizer {

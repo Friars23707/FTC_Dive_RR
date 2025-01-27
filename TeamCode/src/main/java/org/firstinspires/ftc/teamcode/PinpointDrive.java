@@ -16,15 +16,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
-<<<<<<< HEAD
-<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/PinpointDrive.java
-import org.firstinspires.ftc.teamcode.RoadRunner.message.PoseMessage;
-=======
 import org.firstinspires.ftc.teamcode.messages.PoseMessage;
->>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/PinpointDrive.java
-=======
-import org.firstinspires.ftc.teamcode.messages.PoseMessage;
->>>>>>> parent of 39c5237 (set up basic files)
 
 /**
  * Experimental extension of MecanumDrive that uses the Gobilda Pinpoint sensor for localization.
@@ -39,7 +31,7 @@ public class PinpointDrive extends MecanumDrive {
         /*
         Set this to the name that your Pinpoint is configured as in your hardware config.
          */
-        public String pinpointDeviceName = "odo";
+        public String pinpointDeviceName = "pinpoint";
         /*
         Set the odometry pod positions relative to the point that the odometry computer tracks around.
         The X pod offset refers to how far sideways from the tracking point the
