@@ -16,11 +16,15 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
+<<<<<<< HEAD
 <<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/PinpointDrive.java
 import org.firstinspires.ftc.teamcode.RoadRunner.message.PoseMessage;
 =======
 import org.firstinspires.ftc.teamcode.messages.PoseMessage;
 >>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/PinpointDrive.java
+=======
+import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+>>>>>>> parent of 39c5237 (set up basic files)
 
 /**
  * Experimental extension of MecanumDrive that uses the Gobilda Pinpoint sensor for localization.

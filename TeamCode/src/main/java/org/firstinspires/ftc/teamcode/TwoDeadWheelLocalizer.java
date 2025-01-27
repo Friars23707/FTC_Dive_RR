@@ -21,12 +21,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.UnnormalizedAngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+<<<<<<< HEAD
 <<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/RoadRunner/TwoDeadWheelLocalizer.java
 import org.firstinspires.ftc.teamcode.Localizer;
 import org.firstinspires.ftc.teamcode.RoadRunner.message.TwoDeadWheelInputsMessage;
 =======
 import org.firstinspires.ftc.teamcode.messages.TwoDeadWheelInputsMessage;
 >>>>>>> parent of 39c5237 (set up basic files):TeamCode/src/main/java/org/firstinspires/ftc/teamcode/TwoDeadWheelLocalizer.java
+=======
+import org.firstinspires.ftc.teamcode.messages.TwoDeadWheelInputsMessage;
+>>>>>>> parent of 39c5237 (set up basic files)
 
 @Config
 public final class TwoDeadWheelLocalizer implements Localizer {
