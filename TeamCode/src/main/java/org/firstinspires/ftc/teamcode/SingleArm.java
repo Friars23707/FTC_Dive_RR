@@ -21,6 +21,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @TeleOp(name="SingleArm", group="TeleOps")
 public class SingleArm extends OpMode {
 
+
+    final double WRIST_FOLDED_IN   = 0.7;
+    final double WRIST_FOLDED_OUT  = 1.0;
+
     int armPos = 0;
 
     // Declare OpMode members for each of the 4 motors.
@@ -128,9 +132,6 @@ public class SingleArm extends OpMode {
         double rightFrontPower = axial - lateral - yaw;
         double leftBackPower   = axial - lateral + yaw;
         double rightBackPower  = axial + lateral - yaw;
-
-        final double WRIST_FOLDED_IN   = 0.12;
-        final double WRIST_FOLDED_OUT  = 0.5;
 
 
         // Normalize the values so no wheel power exceeds 100%
