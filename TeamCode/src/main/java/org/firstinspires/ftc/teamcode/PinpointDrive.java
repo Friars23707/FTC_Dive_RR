@@ -35,7 +35,7 @@ public class PinpointDrive extends MecanumDrive {
         /*
         Set the odometry pod positions relative to the point that the odometry computer tracks around.
         The X pod offset refers to how far sideways from the tracking point the
-        X (forward) odometry pod is. Left of the center is a positive number,
+        X (forward) odometry pod is. Left of the center is a positive number, 
         right of the center is a negative number. The Y pod offset refers to how far forwards from
         the tracking point the Y (strafe) odometry pod is: forward of the center is a positive number,
         backwards is a negative number.
