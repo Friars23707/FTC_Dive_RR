@@ -22,7 +22,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class SingleArm extends OpMode {
 
 
-    double WRIST_FOLDED   = 0.7;
+    final double WRIST_FOLDED   = 0.23;
+
+    final double WRIST_OUT = 0.55;
+    double WRIST_TARGET = 0.23;
 
     int armPos = 0;
 
@@ -240,9 +243,9 @@ public class SingleArm extends OpMode {
 
 
         if (gamepad2.x) {
-            WRIST_FOLDED += 0.1;
+            WRIST_TARGET = WRIST_OUT;
         } else if (gamepad2.b) {
-            WRIST_FOLDED -= 0.1;
+            WRIST_TARGET = WRIST_FOLDED;
         }
 
         // wristPower = gamepad2.dpad_left ? 1 : 0;
@@ -275,7 +278,7 @@ public class SingleArm extends OpMode {
         }
 
         claw.setPosition(clawPower);
-        wrist.setPosition(WRIST_FOLDED);
+        wrist.setPosition(WRIST_TARGET);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Wrist", wrist.getPosition());

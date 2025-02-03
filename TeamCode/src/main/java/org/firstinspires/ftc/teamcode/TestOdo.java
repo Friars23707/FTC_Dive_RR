@@ -22,7 +22,7 @@ public class TestOdo extends LinearOpMode {
                 .build();
 
         Action backwards = drive.actionBuilder(initalPose)
-                .strafeTo(new Vector2d(-5,0))
+                .turn(Math.toRadians(90))
                 .build();
 
         telemetry.addData("all built", true);
@@ -30,18 +30,15 @@ public class TestOdo extends LinearOpMode {
 
         waitForStart();
 
-        while (opModeIsActive()) {
-            telemetry.addData("start", true);
-            telemetry.update();
-            Actions.runBlocking(
-                    new SequentialAction(
-                            forward,
-                            backwards
-                    )
-            );
-            telemetry.addData("end", true);
-            telemetry.update();
-        }
+        telemetry.addData("start", drive.pose);
+        telemetry.update();
+        Actions.runBlocking(
+                new SequentialAction(
+                        backwards
+                )
+        );
+        telemetry.addData("end", drive.pose);
+        telemetry.update();
 
     }
 }
