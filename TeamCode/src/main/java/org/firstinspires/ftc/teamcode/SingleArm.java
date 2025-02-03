@@ -22,8 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class SingleArm extends OpMode {
 
 
-    final double WRIST_FOLDED_IN   = 0.7;
-    final double WRIST_FOLDED_OUT  = 1.0;
+    double WRIST_FOLDED   = 0.7;
 
     int armPos = 0;
 
@@ -200,6 +199,12 @@ public class SingleArm extends OpMode {
             slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
 
+        if (gamepad2.left_bumper) {
+            if (armTarget >= 600) {
+                armTarget = 600;
+            }
+        }
+
         leftArm.setTargetPosition(armTarget);
         leftArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         rightArm.setTargetPosition(armTarget);
@@ -214,6 +219,13 @@ public class SingleArm extends OpMode {
             slideTarget = slide.getCurrentPosition();
         }
 
+
+        if (gamepad2.left_bumper) {
+            if (slideTarget <= -1000) {
+                slideTarget = -1000;
+            }
+        }
+
         slide.setTargetPosition(slideTarget);
         slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
@@ -225,10 +237,12 @@ public class SingleArm extends OpMode {
             clawPower = 0.5;
         }
 
+
+
         if (gamepad2.x) {
-            wristPos = (WRIST_FOLDED_IN);
+            WRIST_FOLDED += 0.1;
         } else if (gamepad2.b) {
-            wristPos = (WRIST_FOLDED_OUT);
+            WRIST_FOLDED -= 0.1;
         }
 
         // wristPower = gamepad2.dpad_left ? 1 : 0;
@@ -261,7 +275,7 @@ public class SingleArm extends OpMode {
         }
 
         claw.setPosition(clawPower);
-        wrist.setPosition(wristPos);
+        wrist.setPosition(WRIST_FOLDED);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Wrist", wrist.getPosition());
