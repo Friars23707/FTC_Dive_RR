@@ -70,7 +70,7 @@ public class Claw extends LinearOpMode {
             }
         };
     }
-    
+
     @Override
     public void runOpMode() throws InterruptedException {
         //I want the sleep function :sob:

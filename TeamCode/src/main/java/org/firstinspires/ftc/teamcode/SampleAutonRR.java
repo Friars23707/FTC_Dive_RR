@@ -44,7 +44,8 @@ public class SampleAutonRR extends LinearOpMode {
         Actions.runBlocking(
                 new SequentialAction(
                         slide.extend(false),
-                        goToBucket
+                        goToBucket,
+                        claw.eject()
                 )
         );
 
