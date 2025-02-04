@@ -39,7 +39,7 @@ public class SampleAutonRR extends LinearOpMode {
         telemetry.update();
 
         Action goToBucket = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(42, -5), -35)
+                .splineTo(new Vector2d(42, -5), Math.toRadians(35))
                 .build();
 
 
