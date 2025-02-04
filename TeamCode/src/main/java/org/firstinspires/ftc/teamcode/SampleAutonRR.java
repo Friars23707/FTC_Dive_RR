@@ -24,6 +24,8 @@ public class SampleAutonRR extends LinearOpMode {
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -37;
 
+    final double ejectionWait = 500.0;
+
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -78,7 +80,7 @@ public class SampleAutonRR extends LinearOpMode {
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
-                        Funcs.sleep(500.0),
+                        Funcs.sleep(ejectionWait),
                         slide.collection(false),
 
                         firstSampleLineUp,
@@ -87,7 +89,7 @@ public class SampleAutonRR extends LinearOpMode {
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
-                        Funcs.sleep(500.0),
+                        Funcs.sleep(ejectionWait),
                         slide.collection(false),
 
                         secondSampleLineUp,
@@ -96,7 +98,7 @@ public class SampleAutonRR extends LinearOpMode {
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
-                        Funcs.sleep(500.0),
+                        Funcs.sleep(ejectionWait),
                         slide.collection(false),
 
                         thirdSampleLineUp,
@@ -105,7 +107,7 @@ public class SampleAutonRR extends LinearOpMode {
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
-                        Funcs.sleep(500.0),
+                        Funcs.sleep(ejectionWait),
                         slide.collection(false)
 
                 )
