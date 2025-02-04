@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -39,49 +40,74 @@ public class Slide extends LinearOpMode {
         move(20, 0);
     }
 
-    public void extend(boolean shouldWait) {
+    public Action extend(boolean shouldWait) {
+        return new Action() {
 
-        move(1475, -2100);
-        if (shouldWait) {
-            sleep(2000);
-        }
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                move(1475, -2100);
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                return false;
+            }
+        };
     }
 
-    public void retract(boolean shouldWait) {
+    public Action retract(boolean shouldWait) {
+        return new Action() {
 
-        move(20, 0);
-        if (shouldWait) {
-            sleep(2000);
-        }
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                move(20, 0);
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                return false;
+            }
+        };
     }
 
-    public void collection(boolean shouldWait) {
+    public Action collection(boolean shouldWait) {
+        return new Action() {
 
-        move(0, -60);
-        if (shouldWait) {
-            sleep(2000);
-        }
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                move(0, -60);
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                return false;
+            }
+        };
     }
 
-    public void highRung(boolean shouldWait) {
+    public Action highRung(boolean shouldWait) {
+        return new Action() {
 
-        move(1300, -1500);
-        if (shouldWait) {
-            sleep(2000);
-        }
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                move(1300, -1500);
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                return false;
+            }
+        };
     }
 
-    public void highRungBack(boolean shouldWait) {
+    public Action highRungBack(boolean shouldWait) {
+        return new Action() {
 
-        move(600, -800);
-        if (shouldWait) {
-            sleep(2000);
-        }
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                move(600, -800);
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                return false;
+            }
+        };
     }
 
     private int lastArmPos = 0;

@@ -13,6 +13,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class Claw extends LinearOpMode {
 
+    final double WRIST_IN = 0.7;
+    final double WRIST_OUT = 0.5;
+
+
+    final double SPIN_IN = 0.0;
+    final double SPIN_HOLD = 0.5;
+    final double SPIN_OUT = 1.0;
+
     public HardwareMap hwM;
     public Servo claw;
     public Servo wrist;
@@ -23,33 +31,46 @@ public class Claw extends LinearOpMode {
         claw = hwM.get(Servo.class, "claw");
         wrist = hwM.get(Servo.class, "wrist");
 
-        wrist.setPosition(0.7);
+        wrist.setPosition(WRIST_IN);
     }
 
-    public void reset() {
-        wrist.setPosition(0.7);
-        claw.setPosition(0.5);
+
+    public Action reset() {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                wrist.setPosition(WRIST_IN);
+                claw.setPosition(SPIN_HOLD);
+                return false;
+            }
+        };
     }
 
-    public void collect() {
+    public Action collect() {
+        return new Action() {
 
-        wrist.setPosition(1.0);
-        claw.setPosition(0.0);
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                wrist.setPosition(WRIST_OUT);
+                claw.setPosition(SPIN_IN);
+                return false;
+            }
+        };
     }
 
-    public void eject() {
+    public Action eject() {
+        return new Action() {
 
-        wrist.setPosition(1.0);
-        claw.setPosition(0.7);
-
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                wrist.setPosition(WRIST_OUT);
+                claw.setPosition(SPIN_OUT);
+                return false;
+            }
+        };
     }
-    public void side() {
-
-        wrist.setPosition(0.7);
-        claw.setPosition(0.5);
-
-    }
+    
 
     @Override
     public void runOpMode() throws InterruptedException {
