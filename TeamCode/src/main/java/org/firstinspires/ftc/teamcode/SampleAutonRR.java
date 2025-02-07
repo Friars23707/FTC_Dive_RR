@@ -22,9 +22,11 @@ public class SampleAutonRR extends LinearOpMode {
     Slide slide;
     Funcs Funcs;
     Pose2d initialPose = new Pose2d(0,0, 0);
-    final double sampleY = -37;
+    final double sampleY = -45;
+    final double[] bucketPos = {38, -15, Math.toRadians(35)}; // I hate radians
 
-    final double ejectionWait = 500.0;
+    final long ejectionWait = 3000;
+    final long pickupWait = 100;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -38,78 +40,92 @@ public class SampleAutonRR extends LinearOpMode {
         telemetry.addData("DO NOT MOVE ROBOT", true);
         telemetry.update();
 
-        Action goToBucket = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(42, -5), Math.toRadians(35))
+        Action MEMEMEMEME = drive.actionBuilder(initialPose)
+                //INITIAL EJECTION
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.extend(false))
+                .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
+                .stopAndAdd(claw.eject())
+                .stopAndAdd(Funcs.wSleep(ejectionWait))
+
+                //PICK UP 1
+                .splineToLinearHeading(new Pose2d(14.6, sampleY, 0), 0)
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.collection(true))
+                .splineToConstantHeading(new Vector2d(25, sampleY), 0)
+                .stopAndAdd(Funcs.wSleep(pickupWait))
+
+                //EJECTION
+                .stopAndAdd(slide.extend(false))
+                .splineTo(new Vector2d(bucketPos[0]-2, bucketPos[1]-2), bucketPos[2]+Math.toRadians(15))
+                .stopAndAdd(claw.eject())
+                .stopAndAdd(Funcs.wSleep(ejectionWait))
+
+                //PICK UP 2
+                .splineToLinearHeading(new Pose2d(24, sampleY - 1, 0), 0)
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.collection(true))
+                .splineToConstantHeading(new Vector2d(38, sampleY), 0)
+                .stopAndAdd(Funcs.wSleep(pickupWait))
+
+                //EJECTION
+                .stopAndAdd(slide.extend(false))
+                .splineTo(new Vector2d(bucketPos[0]-2, bucketPos[1]-2), bucketPos[2]+Math.toRadians(25))
+                .stopAndAdd(claw.eject())
+                .stopAndAdd(Funcs.wSleep(ejectionWait))
+
+                //PICK UP 3
+                .splineToLinearHeading(new Pose2d(40, sampleY - 1, 0), 0)
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.collection(true))
+                .splineToConstantHeading(new Vector2d(45, sampleY), 0)
+                .stopAndAdd(Funcs.wSleep(pickupWait))
+
                 .build();
 
-
-        Action firstSampleLineUp = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(25, sampleY), 0)
-                .build();
-
-        Action firstSampleCollect = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(33, sampleY), 0)
-                .build();
-
-
-        Action secondSampleLineUp = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(33, sampleY), 0)
-                .build();
-
-        Action secondSampleCollect = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(41, sampleY), 0)
-                .build();
-
-
-        Action thirdSampleLineUp = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(41, sampleY), 0)
-                .build();
-
-        Action thirdSampleCollect = drive.actionBuilder(initialPose)
-                .splineTo(new Vector2d(50, sampleY), 0)
-                .build();
 
         telemetry.addData("Trajectories Set Up", true);
+        telemetry.addData("ra", bucketPos[2]);
         telemetry.update();
 
         waitForStart();
 
         Actions.runBlocking(
                 new SequentialAction(
-                        claw.collect(),
+                        MEMEMEMEME
+                        /*claw.collect(),
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
                         Funcs.sleep(ejectionWait),
-                        slide.collection(false),
 
                         firstSampleLineUp,
+                        slide.collection(true),
                         claw.collect(),
                         firstSampleCollect,
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
                         Funcs.sleep(ejectionWait),
-                        slide.collection(false),
 
                         secondSampleLineUp,
+                        slide.collection(true),
                         claw.collect(),
                         secondSampleCollect,
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
                         Funcs.sleep(ejectionWait),
-                        slide.collection(false),
 
                         thirdSampleLineUp,
+                        slide.collection(true),
                         claw.collect(),
                         thirdSampleCollect,
                         slide.extend(false),
                         goToBucket,
                         claw.eject(),
-                        Funcs.sleep(ejectionWait),
-                        slide.collection(false)
-
+                        Funcs.sleep(ejectionWait)
+*/
                 )
         );
 

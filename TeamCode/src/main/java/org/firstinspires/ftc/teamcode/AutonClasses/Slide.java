@@ -73,7 +73,7 @@ public class Slide extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                move(0, -60);
+                move(20, -70);
                 if (shouldWait) {
                     sleep(2000);
                 }
@@ -87,7 +87,7 @@ public class Slide extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                move(1300, -1500);
+                move(1300, -1600);
                 if (shouldWait) {
                     sleep(2000);
                 }
@@ -114,6 +114,7 @@ public class Slide extends LinearOpMode {
 
     public void move(int armPos, int slidePos) {
         double armSpeed = lastArmPos <= armPos ? 0.7 : 0.5; //Fast up, slow down
+        double slideSpeed = lastArmPos <= armPos ? 0.6 : 1; //slow up, fast down
         lastArmPos = armPos;
 
         leftArm.setTargetPosition(armPos);
@@ -126,7 +127,7 @@ public class Slide extends LinearOpMode {
 
         slide.setTargetPosition(slidePos);
         slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        slide.setPower(0.6);
+        slide.setPower(slideSpeed);
     }
 
     @Override

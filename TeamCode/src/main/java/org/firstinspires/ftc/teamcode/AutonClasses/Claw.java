@@ -13,13 +13,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class Claw extends LinearOpMode {
 
-    final double WRIST_IN = 0.7;
-    final double WRIST_OUT = 0.5;
+    final double WRIST_IN = 0.9;
+    final double WRIST_OUT = 0.53;
 
 
     final double SPIN_IN = 0.0;
     final double SPIN_HOLD = 0.5;
-    final double SPIN_OUT = 1.0;
+    final double SPIN_OUT = 1;
 
     public HardwareMap hwM;
     public Servo claw;

@@ -7,12 +7,15 @@ import com.acmerobotics.roadrunner.Action;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 public class Funcs extends LinearOpMode {
-    public Action sleep(double time) {
+    private long tim;
+
+    public Action wSleep(long ti) {
+        tim = ti;
         return new Action() {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                sleep(time);
+                sleep(tim);
                 return false;
             }
         };

@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class SingleArm extends OpMode {
 
 
-    final double WRIST_FOLDED   = 0.23;
+    final double WRIST_FOLDED   = 0.9;
 
     final double WRIST_OUT = 0.55;
     double WRIST_TARGET = 0.23;
