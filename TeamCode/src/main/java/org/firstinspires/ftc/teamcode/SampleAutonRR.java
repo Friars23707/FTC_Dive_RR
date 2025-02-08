@@ -3,15 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.AutonClasses.Claw;
-import org.firstinspires.ftc.teamcode.AutonClasses.Funcs;
 import org.firstinspires.ftc.teamcode.AutonClasses.Slide;
 
 @Autonomous(group = "RR_Autos")
@@ -20,13 +17,12 @@ public class SampleAutonRR extends LinearOpMode {
     PinpointDrive drive;
     Claw claw;
     Slide slide;
-    Funcs Funcs;
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -45;
-    final double[] bucketPos = {38, -15, Math.toRadians(35)}; // I hate radians
+    final double[] bucketPos = {41.5, -17.5, Math.toRadians(35)}; // I hate radians
 
-    final long ejectionWait = 3000;
-    final long pickupWait = 100;
+    final double ejectionWait = 1.5;
+    final double pickupWait = 0.7;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -34,7 +30,6 @@ public class SampleAutonRR extends LinearOpMode {
         drive = new PinpointDrive(hardwareMap, initialPose);
         claw = new Claw(hardwareMap);
         slide = new Slide(hardwareMap);
-        Funcs = new Funcs();
 
         telemetry.addData("Setting up Trajectories", true);
         telemetry.addData("DO NOT MOVE ROBOT", true);
@@ -46,40 +41,42 @@ public class SampleAutonRR extends LinearOpMode {
                 .stopAndAdd(slide.extend(false))
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
-                .stopAndAdd(Funcs.wSleep(ejectionWait))
+                .waitSeconds(ejectionWait)
 
                 //PICK UP 1
-                .splineToLinearHeading(new Pose2d(14.6, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(13, sampleY+6, 0), 0)
+                .splineToLinearHeading(new Pose2d(13, sampleY, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToConstantHeading(new Vector2d(25, sampleY), 0)
-                .stopAndAdd(Funcs.wSleep(pickupWait))
+                .splineToConstantHeading(new Vector2d(18, sampleY), 0)
+                .waitSeconds(pickupWait)
 
                 //EJECTION
                 .stopAndAdd(slide.extend(false))
                 .splineTo(new Vector2d(bucketPos[0]-2, bucketPos[1]-2), bucketPos[2]+Math.toRadians(15))
                 .stopAndAdd(claw.eject())
-                .stopAndAdd(Funcs.wSleep(ejectionWait))
+                .waitSeconds(ejectionWait)
 
                 //PICK UP 2
                 .splineToLinearHeading(new Pose2d(24, sampleY - 1, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
                 .splineToConstantHeading(new Vector2d(38, sampleY), 0)
-                .stopAndAdd(Funcs.wSleep(pickupWait))
+                .waitSeconds(pickupWait)
+                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
 
                 //EJECTION
                 .stopAndAdd(slide.extend(false))
                 .splineTo(new Vector2d(bucketPos[0]-2, bucketPos[1]-2), bucketPos[2]+Math.toRadians(25))
                 .stopAndAdd(claw.eject())
-                .stopAndAdd(Funcs.wSleep(ejectionWait))
+                .waitSeconds(ejectionWait)
 
                 //PICK UP 3
                 .splineToLinearHeading(new Pose2d(40, sampleY - 1, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
                 .splineToConstantHeading(new Vector2d(45, sampleY), 0)
-                .stopAndAdd(Funcs.wSleep(pickupWait))
+                .waitSeconds(pickupWait)
 
                 .build();
 
