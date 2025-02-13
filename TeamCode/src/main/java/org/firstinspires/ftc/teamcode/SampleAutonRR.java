@@ -18,11 +18,11 @@ public class SampleAutonRR extends LinearOpMode {
     Claw claw;
     Slide slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
-    final double sampleY = -40;
-    final double[] bucketPos = {44.5, -8.5, Math.toRadians(45)}; // I hate radians
+    final double sampleY = -36.5;
+    final double[] bucketPos = {44.3, -8.5, Math.toRadians(45)}; // I hate radians
 
     final double ejectionWait = 1.5;
-    final double pickupWait = 2;
+    final double pickupWait = 1.0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -42,13 +42,14 @@ public class SampleAutonRR extends LinearOpMode {
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)
-                .splineTo(new Vector2d(bucketPos[0]-2,bucketPos[1]-2), bucketPos[2])
 
                 //PICK UP 1
-                .splineToLinearHeading(new Pose2d(16, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(26.5, sampleY+10, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToConstantHeading(new Vector2d(21, sampleY), 0)
+                .splineToLinearHeading(new Pose2d(26.3, sampleY, 0), 0)
+                .waitSeconds(0.1)
+                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
                 .waitSeconds(pickupWait)
 
                 //EJECTION
@@ -58,12 +59,12 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 2
-                .splineToLinearHeading(new Pose2d(24, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(34, sampleY+0.5, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToConstantHeading(new Vector2d(38, sampleY), 0)
+                .splineToConstantHeading(new Vector2d(41, sampleY+1), 0)
                 .waitSeconds(pickupWait)
-                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
+                .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
 
                 //EJECTION
                 .stopAndAdd(slide.extend(false))
@@ -72,10 +73,10 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 3
-                .splineToLinearHeading(new Pose2d(40, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(40, sampleY+2, 0), 0)
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToConstantHeading(new Vector2d(45, sampleY), 0)
+                .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
                 .waitSeconds(pickupWait)
 
                 .build();
