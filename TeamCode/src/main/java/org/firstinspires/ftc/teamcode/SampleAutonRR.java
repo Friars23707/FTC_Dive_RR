@@ -4,6 +4,7 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -88,6 +89,16 @@ public class SampleAutonRR extends LinearOpMode {
                 .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
                 .waitSeconds(pickupWait)
 
+                //EJECTION
+                .stopAndAdd(slide.extend(false))
+                .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
+                .stopAndAdd(claw.eject())
+                .waitSeconds(ejectionWait)
+
+                //LEVEL ONE ASCENT
+                .splineTo(new Vector2d(40, -42), 180)
+                .stopAndAdd(slide.level1(false))
+                .stopAndAdd(new SleepAction(400))
                 .build();
 
 

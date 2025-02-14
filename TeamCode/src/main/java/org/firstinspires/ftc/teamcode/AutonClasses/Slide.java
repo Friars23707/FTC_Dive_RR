@@ -54,20 +54,6 @@ public class Slide extends LinearOpMode {
         };
     }
 
-    public Action retract(boolean shouldWait) {
-        return new Action() {
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (shouldWait) {
-                    sleep(2000);
-                }
-                move(20, 0);
-                return false;
-            }
-        };
-    }
-
     public Action collection(boolean shouldWait) {
         return new Action() {
 
@@ -77,6 +63,34 @@ public class Slide extends LinearOpMode {
                     sleep(2000);
                 }
                 move(20, -70);
+                return false;
+            }
+        };
+    }
+
+    public Action level1(boolean shouldWait) {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                move(1000, -1200);
+                return false;
+            }
+        };
+    }
+
+    public Action retract(boolean shouldWait) {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                if (shouldWait) {
+                    sleep(2000);
+                }
+                move(20, 0);
                 return false;
             }
         };
