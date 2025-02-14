@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -10,6 +11,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.AutonClasses.Claw;
 import org.firstinspires.ftc.teamcode.AutonClasses.Slide;
+
+import kotlin.jvm.internal.TypeParameterReference;
 
 @Autonomous(group = "RR_Autos")
 public class SampleAutonRR extends LinearOpMode {
@@ -38,7 +41,9 @@ public class SampleAutonRR extends LinearOpMode {
         Action MEMEMEMEME = drive.actionBuilder(initialPose)
                 //INITIAL EJECTION
                 .stopAndAdd(claw.collect())
-                .stopAndAdd(slide.extend(false))
+                .stopAndAdd(new ParallelAction(
+                        slide.extend(true)
+                ))
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)

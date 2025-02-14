@@ -45,10 +45,10 @@ public class Slide extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                move(1475, -2100);
                 if (shouldWait) {
                     sleep(2000);
                 }
+                move(1475, -2100);
                 return false;
             }
         };
