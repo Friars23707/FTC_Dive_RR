@@ -59,10 +59,10 @@ public class Slide extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                move(20, 0);
                 if (shouldWait) {
                     sleep(2000);
                 }
+                move(20, 0);
                 return false;
             }
         };
@@ -73,10 +73,10 @@ public class Slide extends LinearOpMode {
 
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                move(20, -70);
                 if (shouldWait) {
                     sleep(2000);
                 }
+                move(20, -70);
                 return false;
             }
         };

@@ -41,17 +41,17 @@ public class SampleAutonRR extends LinearOpMode {
         Action MEMEMEMEME = drive.actionBuilder(initialPose)
                 //INITIAL EJECTION
                 .stopAndAdd(claw.collect())
-                .stopAndAdd(new ParallelAction(
-                        slide.extend(true)
-                ))
+                .stopAndAdd(slide.extend(false))
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 1
+                .stopAndAdd(new ParallelAction(
+                        claw.collect(),
+                        slide.collection(true)
+                ))
                 .splineToLinearHeading(new Pose2d(26.5, sampleY+10, 0), 0)
-                .stopAndAdd(claw.collect())
-                .stopAndAdd(slide.collection(true))
                 .splineToLinearHeading(new Pose2d(26.3, sampleY, 0), 0)
                 .waitSeconds(0.1)
                 .splineToConstantHeading(new Vector2d(30, sampleY), 0)
@@ -64,9 +64,11 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 2
+                .stopAndAdd(new ParallelAction(
+                        claw.collect(),
+                        slide.collection(true)
+                ))
                 .splineToLinearHeading(new Pose2d(34, sampleY+0.5, 0), 0)
-                .stopAndAdd(claw.collect())
-                .stopAndAdd(slide.collection(true))
                 .splineToConstantHeading(new Vector2d(41, sampleY+1), 0)
                 .waitSeconds(pickupWait)
                 .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
@@ -78,9 +80,11 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 3
+                .stopAndAdd(new ParallelAction(
+                        claw.collect(),
+                        slide.collection(true)
+                ))
                 .splineToLinearHeading(new Pose2d(40, sampleY+2, 0), 0)
-                .stopAndAdd(claw.collect())
-                .stopAndAdd(slide.collection(true))
                 .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
                 .waitSeconds(pickupWait)
 
