@@ -83,7 +83,7 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 3
                 .stopAndAdd(new ParallelAction(
                         claw.collect(),
-                        slide.collection(true)
+                        slide.start("extend", true);
                 ))
                 .splineToLinearHeading(new Pose2d(40, sampleY+2, 0), 0)
                 .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
@@ -98,13 +98,15 @@ public class SampleAutonRR extends LinearOpMode {
                 //LEVEL ONE ASCENT
                 .splineTo(new Vector2d(40, -42), 180)
                 .stopAndAdd(slide.level1(false))
-                .stopAndAdd(new SleepAction(400))
+                .waitSeconds(5 )
                 .build();
 
 
         telemetry.addData("Trajectories Set Up", true);
         telemetry.addData("ra", bucketPos[2]);
         telemetry.update();
+
+
 
         waitForStart();
 

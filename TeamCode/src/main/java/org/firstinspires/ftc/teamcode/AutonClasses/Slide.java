@@ -11,12 +11,17 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Slide extends LinearOpMode {
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Slide extends Thread {
 
     public HardwareMap hwM;
     public DcMotor leftArm;
     public DcMotor rightArm;
     public DcMotor slide;
+    Map<String, Integer[]> slideValues = new HashMap<>();
 
     public Slide(HardwareMap sent_hwM) {
         hwM = sent_hwM;
@@ -38,6 +43,10 @@ public class Slide extends LinearOpMode {
         slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         move(20, 0);
+
+        // Adding key-value pairs to the map
+        slideValues.put("collect", new Integer[]{20, -70});
+        slideValues.put("extend", new Integer[]{1475, -2100});
     }
 
     public Action extend(boolean shouldWait) {
@@ -46,7 +55,11 @@ public class Slide extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 move(1475, -2100);
                 return false;
@@ -60,7 +73,11 @@ public class Slide extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 move(20, -70);
                 return false;
@@ -74,7 +91,11 @@ public class Slide extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 move(1000, -1200);
                 return false;
@@ -88,7 +109,11 @@ public class Slide extends LinearOpMode {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 move(20, 0);
                 return false;
@@ -103,7 +128,11 @@ public class Slide extends LinearOpMode {
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 move(1300, -1600);
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 return false;
             }
@@ -117,7 +146,11 @@ public class Slide extends LinearOpMode {
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
                 move(600, -800);
                 if (shouldWait) {
-                    sleep(2000);
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 return false;
             }
@@ -144,8 +177,17 @@ public class Slide extends LinearOpMode {
         slide.setPower(slideSpeed);
     }
 
-    @Override
-    public void runOpMode() throws InterruptedException {
-        //I want the sleep function :sob:
+    public void run(String key, boolean shoudldWait) {
+        if (shoudldWait) {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        Integer[] vals = slideValues.get(key);
+        move(vals[0], vals[1]);
     }
+
 }
