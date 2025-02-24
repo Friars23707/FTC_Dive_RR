@@ -93,7 +93,7 @@ public class JavaThreads extends Thread {
 
             if (shouldWait) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(750);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }

@@ -76,6 +76,24 @@ public class Slide extends Thread {
         };
     }
 
+    public Action placeSpecimen(boolean shouldWait) {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                if (shouldWait) {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                move(1200, -1300);
+                return false;
+            }
+        };
+    }
+
     public Action collection(boolean shouldWait) {
         return new Action() {
 

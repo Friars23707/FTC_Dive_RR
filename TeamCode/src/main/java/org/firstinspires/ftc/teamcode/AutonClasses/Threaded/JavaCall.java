@@ -62,4 +62,17 @@ public class JavaCall {
     }
 
 
+    public Action placeSpecimen(boolean shouldWait) {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+
+                threads.setArm(1200, -1300, shouldWait);
+                threads.start();
+
+                return false;
+            }
+        };
+    }
 }

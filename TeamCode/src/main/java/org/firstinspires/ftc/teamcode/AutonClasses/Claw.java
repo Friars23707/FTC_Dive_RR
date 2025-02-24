@@ -70,6 +70,18 @@ public class Claw extends LinearOpMode {
         };
     }
 
+    public Action placeSpecimen(double spin) {
+        return new Action() {
+
+            @Override
+            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                wrist.setPosition(0);
+                claw.setPosition(spin);
+                return false;
+            }
+        };
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
         //I want the sleep function :sob:
