@@ -83,7 +83,7 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 3
                 .stopAndAdd(new ParallelAction(
                         claw.collect(),
-                        slide.start("extend", true);
+                        slide.start("extend", true)
                 ))
                 .splineToLinearHeading(new Pose2d(40, sampleY+2, 0), 0)
                 .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
