@@ -25,7 +25,7 @@ public class JavaCall {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
-                threads.set(1475, -2100, 0, 0, shouldWait);
+                threads.setArm(1475, -2100, shouldWait);
                 threads.start();
 
                 return false;
@@ -39,7 +39,7 @@ public class JavaCall {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
-                threads.set(20, -70, 0, 0, shouldWait);
+                threads.setArm(20, -70, shouldWait);
                 threads.start();
 
                 return false;
@@ -53,7 +53,7 @@ public class JavaCall {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
-                threads.set(1000, -1200, 0, 0, shouldWait);
+                threads.setArm(1000, -1200, shouldWait);
                 threads.start();
 
                 return false;

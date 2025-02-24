@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.AutonClasses.Claw;
 import org.firstinspires.ftc.teamcode.AutonClasses.Slide;
+import org.firstinspires.ftc.teamcode.AutonClasses.Threaded.JavaCall;
 
 import kotlin.jvm.internal.TypeParameterReference;
 
@@ -20,7 +21,7 @@ public class SampleAutonRR extends LinearOpMode {
 
     PinpointDrive drive;
     Claw claw;
-    Slide slide;
+    JavaCall slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -36.5;
     final double[] bucketPos = {44.3, -8.5, Math.toRadians(45)}; // I hate radians
@@ -33,7 +34,7 @@ public class SampleAutonRR extends LinearOpMode {
 
         drive = new PinpointDrive(hardwareMap, initialPose);
         claw = new Claw(hardwareMap);
-        slide = new Slide(hardwareMap);
+        slide = new JavaCall(hardwareMap);
 
         telemetry.addData("Setting up Trajectories", true);
         telemetry.addData("DO NOT MOVE ROBOT", true);
@@ -48,10 +49,8 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 1
-                .stopAndAdd(new ParallelAction(
-                        claw.collect(),
-                        slide.collection(true)
-                ))
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.collection(true))
                 .splineToLinearHeading(new Pose2d(26.5, sampleY+10, 0), 0)
                 .splineToLinearHeading(new Pose2d(26.3, sampleY, 0), 0)
                 .waitSeconds(0.1)
@@ -65,10 +64,8 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 2
-                .stopAndAdd(new ParallelAction(
-                        claw.collect(),
-                        slide.collection(true)
-                ))
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.collection(true))
                 .splineToLinearHeading(new Pose2d(34, sampleY+0.5, 0), 0)
                 .splineToConstantHeading(new Vector2d(41, sampleY+1), 0)
                 .waitSeconds(pickupWait)
@@ -81,10 +78,8 @@ public class SampleAutonRR extends LinearOpMode {
                 .waitSeconds(ejectionWait)
 
                 //PICK UP 3
-                .stopAndAdd(new ParallelAction(
-                        claw.collect(),
-                        slide.start("extend", true)
-                ))
+                .stopAndAdd(claw.collect())
+                .stopAndAdd(slide.extend(true))
                 .splineToLinearHeading(new Pose2d(40, sampleY+2, 0), 0)
                 .splineToConstantHeading(new Vector2d(48, sampleY+2), 0)
                 .waitSeconds(pickupWait)
@@ -98,7 +93,7 @@ public class SampleAutonRR extends LinearOpMode {
                 //LEVEL ONE ASCENT
                 .splineTo(new Vector2d(40, -42), 180)
                 .stopAndAdd(slide.level1(false))
-                .waitSeconds(5 )
+                .waitSeconds(5)
                 .build();
 
 

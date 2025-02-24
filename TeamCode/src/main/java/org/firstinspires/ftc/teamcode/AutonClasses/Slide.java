@@ -15,6 +15,15 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+*
+* NOT USED ANYMORE
+* GO USE THE JAVACALL CLASS
+* SO WE CAN MULTITHREAD YAYYYYYY
+* LOGAN REMBISZ - FEBUARY 24TH 2025
+*
+* */
+
 public class Slide extends Thread {
 
     public HardwareMap hwM;
