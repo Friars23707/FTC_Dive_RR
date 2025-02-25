@@ -38,11 +38,20 @@ public class SpecimenAuton extends LinearOpMode {
         Action MEMEMEMEME = drive.actionBuilder(initialPose)
                 //DRIVE TO SUB
                 .stopAndAdd(claw.collect())
-                .stopAndAdd(slide.extend(false))
-                .splineTo(new Vector2d(20,8),0)
+                .stopAndAdd(slide.placeSpecimen(false,1040))
+                .splineToConstantHeading(new Vector2d(18,8),0)
                 .stopAndAdd(claw.placeSpecimen(0.0))
-                .stopAndAdd(slide.placeSpecimen(false))
-                .stopAndAdd(claw.placeSpecimen(1))
+                .waitSeconds(0.5)
+                .stopAndAdd(slide.placeSpecimen(false,1000))
+                .waitSeconds(0.5)
+                .stopAndAdd(slide.retractSpecimen(false))
+                .stopAndAdd(claw.placeSpecimen(1.0))
+                .waitSeconds(0.5)
+                .stopAndAdd(slide.collection(true))
+                .stopAndAdd(claw.collect())
+                .splineToConstantHeading(new Vector2d(10,8),0)
+                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(5,-40),0)
                 .build();
 
 

@@ -89,11 +89,6 @@ public class SampleAutonRR extends LinearOpMode {
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)
-
-                //LEVEL ONE ASCENT
-                .splineTo(new Vector2d(40, -42), 180)
-                .stopAndAdd(slide.level1(false))
-                .waitSeconds(5)
                 .build();
 
 
