@@ -39,7 +39,7 @@ public class SpecimenAuton extends LinearOpMode {
                 //DRIVE TO SUB
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.placeSpecimen(false,1040))
-                .splineToConstantHeading(new Vector2d(18,8),0)
+                .splineToConstantHeading(new Vector2d(16,8),0)
                 .stopAndAdd(claw.placeSpecimen(0.0))
                 .waitSeconds(0.5)
                 .stopAndAdd(slide.placeSpecimen(false,1000))

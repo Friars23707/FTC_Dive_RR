@@ -242,9 +242,9 @@ public class SingleArm extends OpMode {
 
 
 
-        if (gamepad2.x) {
+        if (gamepad2.b) {
             WRIST_TARGET = WRIST_OUT;
-        } else if (gamepad2.b) {
+        } else if (gamepad2.x) {
             WRIST_TARGET = WRIST_FOLDED;
         }
 

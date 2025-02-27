@@ -24,10 +24,10 @@ public class SampleAutonRR extends LinearOpMode {
     JavaCall slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -35;
-    final double[] bucketPos = {44.3, -8.5, Math.toRadians(45)}; // I hate radians
+    final double[] bucketPos = {45.75, -7, Math.toRadians(45)}; // I hate radians
 
-    final double ejectionWait = 1.5;
-    final double pickupWait = 1.0;
+    final double ejectionWait = 1.4;
+    final double pickupWait = 0.9;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -51,9 +51,9 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 1
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(27.5, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(27.5, sampleY+0.75, 0), 0)
                 .waitSeconds(0.1)
-                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
+                .splineToConstantHeading(new Vector2d(30, sampleY+0.75), 0)
                 .waitSeconds(pickupWait)
 
                 //EJECTION
@@ -65,7 +65,7 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 2
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(34, sampleY+0.5, 0), 0)
+                .splineToLinearHeading(new Pose2d(34, sampleY, 0), 0)
                 .splineToConstantHeading(new Vector2d(41, sampleY+1), 0)
                 .waitSeconds(pickupWait)
                 .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
@@ -79,16 +79,20 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 3
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(45, sampleY+0.5, 0), 0)
-                .splineToConstantHeading(new Vector2d(50, sampleY+1), 0)
+                .splineToLinearHeading(new Pose2d(45, sampleY, 0), 0)
+                .splineToConstantHeading(new Vector2d(50, sampleY), 0)
                 .waitSeconds(pickupWait)
-                .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
 
                 //EJECTION
-                .stopAndAdd(slide.extend(false))
+                .stopAndAdd(slide.extend(true))
                 .splineTo(new Vector2d(bucketPos[0], bucketPos[1]), bucketPos[2])
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)
+
+                //ATTEMPT PARK
+                .stopAndAdd(slide.level1(false))
+                .splineToLinearHeading(new Pose2d(40, -40,180),0)
+
                 .build();
 
 
