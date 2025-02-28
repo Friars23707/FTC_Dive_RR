@@ -23,10 +23,10 @@ public class SampleAutonRR extends LinearOpMode {
     Claw claw;
     JavaCall slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
-    final double sampleY = -35;
-    final double[] bucketPos = {45.75, -7, Math.toRadians(45)}; // I hate radians
+    final double sampleY = -34.75;
+    final double[] bucketPos = {44.5, -8, Math.toRadians(45)}; // I hate radians
 
-    final double ejectionWait = 1.4;
+    final double ejectionWait = 1.5;
     final double pickupWait = 0.9;
 
     @Override
@@ -51,9 +51,9 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 1
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(27.5, sampleY+0.75, 0), 0)
+                .splineToLinearHeading(new Pose2d(27.5, sampleY, 0), 0)
                 .waitSeconds(0.1)
-                .splineToConstantHeading(new Vector2d(30, sampleY+0.75), 0)
+                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
                 .waitSeconds(pickupWait)
 
                 //EJECTION
@@ -89,10 +89,10 @@ public class SampleAutonRR extends LinearOpMode {
                 .stopAndAdd(claw.eject())
                 .waitSeconds(ejectionWait)
 
-                //ATTEMPT PARK
+                /*ATTEMPT PARK
                 .stopAndAdd(slide.level1(false))
                 .splineToLinearHeading(new Pose2d(40, -40,180),0)
-
+                */
                 .build();
 
 
