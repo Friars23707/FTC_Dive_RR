@@ -24,7 +24,7 @@ public class SampleAutonRR extends LinearOpMode {
     JavaCall slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -34.75;
-    final double[] bucketPos = {44.5, -8, Math.toRadians(45)}; // I hate radians
+    final double[] bucketPos = {45, -8, Math.toRadians(45)}; // I hate radians
 
     final double ejectionWait = 1.5;
     final double pickupWait = 0.9;
@@ -51,10 +51,12 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 1
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(27.5, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(31, sampleY+12, -45), -45)
                 .waitSeconds(0.1)
-                .splineToConstantHeading(new Vector2d(30, sampleY), 0)
+                .splineToConstantHeading(new Vector2d(35, sampleY+1), -45)
                 .waitSeconds(pickupWait)
+                .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
+                // FORTNITE
 
                 //EJECTION
                 .stopAndAdd(slide.extend(false))
