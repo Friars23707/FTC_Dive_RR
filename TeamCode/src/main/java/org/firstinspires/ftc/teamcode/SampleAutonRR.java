@@ -51,9 +51,9 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 1
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(31, sampleY+12, -45), -45)
+                .splineToLinearHeading(new Pose2d(32.5, sampleY+12, -45), -45)
                 .waitSeconds(0.1)
-                .splineToConstantHeading(new Vector2d(35, sampleY+1), -45)
+                .splineToConstantHeading(new Vector2d(35.5, sampleY+1), -45)
                 .waitSeconds(pickupWait)
                 .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
                 // FORTNITE

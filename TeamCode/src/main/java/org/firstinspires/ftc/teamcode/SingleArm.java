@@ -202,11 +202,7 @@ public class SingleArm extends OpMode {
             slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
 
-        if (gamepad2.left_bumper) {
-            if (armTarget >= 600) {
-                armTarget = 600;
-            }
-        }
+        armTarget = Math.min(armTarget, 2270);
 
         leftArm.setTargetPosition(armTarget);
         leftArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -222,12 +218,7 @@ public class SingleArm extends OpMode {
             slideTarget = slide.getCurrentPosition();
         }
 
-
-        if (gamepad2.left_bumper) {
-            if (slideTarget <= -1000) {
-                slideTarget = -1000;
-            }
-        }
+        slideTarget = Math.max(slideTarget, -1560);
 
         slide.setTargetPosition(slideTarget);
         slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);

@@ -38,7 +38,7 @@ public class JavaThreads extends Thread {
 
         wrist.setPosition(0.9); //WRIST IN
 
-        moveArm(20, 0);
+        moveArm(0, 0);
     }
 
     public int armPos;
