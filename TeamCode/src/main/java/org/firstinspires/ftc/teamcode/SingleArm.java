@@ -41,6 +41,7 @@ public class SingleArm extends OpMode {
     public DcMotor lift = null;
     public Servo claw = null;
     public Servo wrist = null;
+    public Servo stick = null;
 
     public ColorRangeSensor sampleSensor = null;
 
@@ -52,6 +53,7 @@ public class SingleArm extends OpMode {
 
     double clawPower = 0.5;
     double wristPos = 0.5;
+    double stickPos = 1;
 
     boolean redAlliance = false;
 
@@ -71,6 +73,7 @@ public class SingleArm extends OpMode {
 
         claw = hardwareMap.get(Servo.class, "claw");
         wrist = hardwareMap.get(Servo.class, "wrist");
+        stick = hardwareMap.get(Servo.class, "stick");
 
         sampleSensor = hardwareMap.get(ColorRangeSensor.class, "sample_sens");
 
@@ -237,6 +240,15 @@ public class SingleArm extends OpMode {
         }*/
 
         lift.setPower(liftTarget);
+
+        //Stick to help lift
+        if (gamepad1.x) {
+            stickPos = 0;
+        } else if (gamepad1.b) {
+            stickPos = 1;
+        }
+        stick.setPosition(stickPos);
+
 
         if (gamepad2.y) {
             clawPower = 1.0;
