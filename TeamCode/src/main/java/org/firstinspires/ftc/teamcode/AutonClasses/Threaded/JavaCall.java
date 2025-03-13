@@ -25,7 +25,7 @@ public class JavaCall {
             @Override
             public boolean run(@NonNull TelemetryPacket telemetryPacket) {
 
-                threads.setArm(1500, -2000, shouldWait);
+                threads.setArm(1520, -2000, shouldWait);
                 threads.start();
 
                 return false;

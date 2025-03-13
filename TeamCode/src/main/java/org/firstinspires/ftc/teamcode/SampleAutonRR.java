@@ -24,7 +24,7 @@ public class SampleAutonRR extends LinearOpMode {
     JavaCall slide;
     Pose2d initialPose = new Pose2d(0,0, 0);
     final double sampleY = -34.75;
-    final double[] bucketPos = {45, -8, Math.toRadians(45)}; // I hate radians
+    final double[] bucketPos = {41, -9, Math.toRadians(45)}; // I hate radians
 
     final double ejectionWait = 1.5;
     final double pickupWait = 0.9;
@@ -51,9 +51,9 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 1
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(32.5, sampleY+12, -45), -45)
+                .splineToLinearHeading(new Pose2d(30.3, sampleY+17, -45), -45)
                 .waitSeconds(0.1)
-                .splineToConstantHeading(new Vector2d(35.5, sampleY+1), -45)
+                .splineToConstantHeading(new Vector2d(35.5, sampleY+1), -50)
                 .waitSeconds(pickupWait)
                 .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
                 // FORTNITE
@@ -68,9 +68,9 @@ public class SampleAutonRR extends LinearOpMode {
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
                 .splineToLinearHeading(new Pose2d(34, sampleY, 0), 0)
-                .splineToConstantHeading(new Vector2d(41, sampleY+1), 0)
+                .splineToConstantHeading(new Vector2d(41, sampleY+1.3), 0)
                 .waitSeconds(pickupWait)
-                .splineToConstantHeading(new Vector2d(30, sampleY+1), 0)
+                .splineToConstantHeading(new Vector2d(30, sampleY+1.3), 0)
 
                 //EJECTION
                 .stopAndAdd(slide.extend(false))
@@ -81,7 +81,7 @@ public class SampleAutonRR extends LinearOpMode {
                 //PICK UP 3
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.collection(true))
-                .splineToLinearHeading(new Pose2d(45, sampleY, 0), 0)
+                .splineToLinearHeading(new Pose2d(41, sampleY, 0), 0)
                 .splineToConstantHeading(new Vector2d(50, sampleY), 0)
                 .waitSeconds(pickupWait)
 
