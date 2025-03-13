@@ -112,6 +112,7 @@ public class SingleArm extends OpMode {
         // Wait for the game to start (driver presses PLAY)
         telemetry.addData("Status", "Initialized");
         telemetry.addData("Alliance", redAlliance ? "Red" : "Blue");
+        telemetry.addData("Marination", runtime.toString());
         telemetry.update();
 
         if (gamepad1.x) {
