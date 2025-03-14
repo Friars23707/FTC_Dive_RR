@@ -38,10 +38,8 @@ public class SingleArm extends OpMode {
     public DcMotor leftArm = null;
     public DcMotor rightArm = null;
     public DcMotor slide = null;
-    public DcMotor lift = null;
     public Servo claw = null;
     public Servo wrist = null;
-    public Servo stick = null;
 
     public ColorRangeSensor sampleSensor = null;
 
@@ -69,11 +67,9 @@ public class SingleArm extends OpMode {
         leftArm = hardwareMap.get(DcMotor.class,"arm_left");
         rightArm = hardwareMap.get(DcMotor.class,"arm_right");
         slide = hardwareMap.get(DcMotor.class,"slide");
-        lift = hardwareMap.get(DcMotor.class,"lift");
 
         claw = hardwareMap.get(Servo.class, "claw");
         wrist = hardwareMap.get(Servo.class, "wrist");
-        stick = hardwareMap.get(Servo.class, "stick");
 
         sampleSensor = hardwareMap.get(ColorRangeSensor.class, "sample_sens");
 
@@ -102,9 +98,6 @@ public class SingleArm extends OpMode {
         slide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         slide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        lift.setDirection(DcMotor.Direction.FORWARD);
-        //lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     @Override
@@ -231,24 +224,6 @@ public class SingleArm extends OpMode {
         slide.setTargetPosition(slideTarget);
         slide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        // Lift Code
-        float liftTarget = gamepad1.left_trigger - gamepad1.right_trigger;
-
-       /* if (liftTarget < 0 && lift.getCurrentPosition() < 30) {
-            liftTarget = 0;
-        } else if (liftTarget > 0 && lift.getCurrentPosition() >= 3100) {
-            liftTarget = 0;
-        }*/
-
-        lift.setPower(liftTarget);
-
-        //Stick to help lift
-        if (gamepad1.x) {
-            stickPos = 0;
-        } else if (gamepad1.b) {
-            stickPos = 1;
-        }
-        stick.setPosition(stickPos);
 
 
         if (gamepad2.y) {
@@ -304,7 +279,6 @@ public class SingleArm extends OpMode {
         telemetry.addData("Claw Input", clawPower);
         telemetry.addData("Claw", claw.getPosition());
         telemetry.addData("Slide", slideTarget+" : "+slide.getCurrentPosition());
-        telemetry.addData("Lift", liftTarget+" : "+lift.getCurrentPosition());
         telemetry.addData("Arm", armTarget+" : "+leftArm.getCurrentPosition());
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
