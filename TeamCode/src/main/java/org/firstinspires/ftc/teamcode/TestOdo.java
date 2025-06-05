@@ -11,23 +11,23 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.AutonClasses.Claw;
 
 @Autonomous
+@SuppressWarnings("unused")
 public class TestOdo extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        Pose2d initalPose = new Pose2d(0, 0, Math.toRadians(0));
+        Pose2d initialPose = new Pose2d(0, 0, Math.toRadians(0));
 
-        PinpointDrive drive = new PinpointDrive(hardwareMap, initalPose);
+        PinpointDrive drive = new PinpointDrive(hardwareMap, initialPose);
 
         Claw claw = new Claw(hardwareMap);
 
-        Action first = drive.actionBuilder(initalPose)
+        Action first = drive.actionBuilder(initialPose)
                 .splineTo(new Vector2d(20,0), 0)
                 .stopAndAdd(claw.collect())
                 .splineTo(new Vector2d(-20, -20), 0)
                 .build();
-
-        Action second = drive.actionBuilder(initalPose)
+        Action second = drive.actionBuilder(initialPose)
                 .splineTo(new Vector2d(-20, -20), 0)
                 .build();
 
@@ -38,11 +38,9 @@ public class TestOdo extends LinearOpMode {
 
         telemetry.addData("first", drive.pose);
         telemetry.update();
-        Actions.runBlocking(
-                new SequentialAction(
-                        first
-                )
-        );
+
+        Actions.runBlocking(new SequentialAction(first));
+
         telemetry.addData("first end", drive.pose);
         telemetry.update();
 
@@ -50,13 +48,10 @@ public class TestOdo extends LinearOpMode {
 
         telemetry.addData("second", drive.pose);
         telemetry.update();
-        Actions.runBlocking(
-                new SequentialAction(
-                        second
-                )
-        );
+
+        Actions.runBlocking(new SequentialAction(second));
+
         telemetry.addData("second end", drive.pose);
         telemetry.update();
-
     }
 }

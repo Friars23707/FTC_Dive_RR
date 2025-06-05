@@ -1,23 +1,19 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.AutonClasses.Claw;
-import org.firstinspires.ftc.teamcode.AutonClasses.Slide;
 import org.firstinspires.ftc.teamcode.AutonClasses.Threaded.JavaCall;
 
-import kotlin.jvm.internal.TypeParameterReference;
-
 @Autonomous(group = "RR_Autos")
-public class SampleAutonRR extends LinearOpMode {
+@SuppressWarnings("unused")
+public class SampleAutonomousRR extends LinearOpMode {
 
     PinpointDrive drive;
     Claw claw;
@@ -40,7 +36,7 @@ public class SampleAutonRR extends LinearOpMode {
         telemetry.addData("DO NOT MOVE ROBOT", true);
         telemetry.update();
 
-        Action MEMEMEMEME = drive.actionBuilder(initialPose)
+        Action autonomous = drive.actionBuilder(initialPose)
                 //INITIAL EJECTION
                 .stopAndAdd(claw.collect())
                 .stopAndAdd(slide.extend(false))
@@ -102,51 +98,8 @@ public class SampleAutonRR extends LinearOpMode {
         telemetry.addData("ra", bucketPos[2]);
         telemetry.update();
 
-
-
         waitForStart();
 
-        Actions.runBlocking(
-                new SequentialAction(
-                        MEMEMEMEME
-                        /*claw.collect(),
-                        slide.extend(false),
-                        goToBucket,
-                        claw.eject(),
-                        Funcs.sleep(ejectionWait),
-
-                        firstSampleLineUp,
-                        slide.collection(true),
-                        claw.collect(),
-                        firstSampleCollect,
-                        slide.extend(false),
-                        goToBucket,
-                        claw.eject(),
-                        Funcs.sleep(ejectionWait),
-
-                        secondSampleLineUp,
-                        slide.collection(true),
-                        claw.collect(),
-                        secondSampleCollect,
-                        slide.extend(false),
-                        goToBucket,
-                        claw.eject(),
-                        Funcs.sleep(ejectionWait),
-
-                        thirdSampleLineUp,
-                        slide.collection(true),
-                        claw.collect(),
-                        thirdSampleCollect,
-                        slide.extend(false),
-                        goToBucket,
-                        claw.eject(),
-                        Funcs.sleep(ejectionWait)
-*/
-                )
-        );
-
-
+        Actions.runBlocking(new SequentialAction(autonomous));
     }
-
-
 }
